@@ -1,0 +1,40 @@
+name: SimpleSurvival
+version: '1.0'
+main: org.molfordan.simpleSurvival.Main
+api-version: '1.21'
+commands:
+  setlocation:
+    usage: /setlocation [locationName]
+    description: set location
+    aliases: [sl, setloc]
+  location:
+    usage: /location [locationName]
+    description: location list
+    aliases: [loc, l]
+  seelocation:
+    usage: /seelocation [target] [locationName]
+    description: location list and name
+    aliases: [seeloc, ssl, whereloc]
+  deletelocation:
+    usage: /deletelocation [locationName]
+    description: delete location
+    aliases: [delloc, del]
+  simplesurvivalplugin:
+    usage: /<command>
+    description: yes
+    aliases: [ssp]
+  afk:
+    usage: /afk
+    description: afk
+  tel:
+    usage: /tel
+    description: teleport
+    aliases: [teleport, tel, tpp]
+  deleteplayerlocation:
+    usage: /deleteplayerlocation [<playerName>] [<locatioName>]
+    description: delete player's location
+    aliases: [dpl, delpl]
+  setplayerlocation:
+    usage: /spl  [<playerName>] [<locationName>] [x] [y] [z]
+    description: create player's location
+    aliases: [spl, setpl]

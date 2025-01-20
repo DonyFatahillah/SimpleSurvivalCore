@@ -123,9 +123,11 @@ public class playerTeleportCommand implements TabExecutor {
             sender.sendMessage(notAllowed);
             return Collections.emptyList();
         }
-
-
-        if (args.length == 1) {
+        if (args.length == 0){
+            suggestions.add("teleport");
+            suggestions.add("tel");
+            suggestions.add("tpp");
+        } else if (args.length == 1) {
             suggestions.add("here");
             for (Player player : Bukkit.getOnlinePlayers()) {
                 suggestions.add(player.getName());

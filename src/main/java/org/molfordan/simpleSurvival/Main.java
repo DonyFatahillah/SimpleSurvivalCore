@@ -60,12 +60,13 @@ public final class Main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new playerOnJoinEvent(), this);
 
         // Schedule tasks
-        getServer().getScheduler().runTaskTimer(this, movement::checkInactivePlayers, 20L, 20L * 60);
+        getServer().getScheduler().runTaskTimer(this, movement::checkInactivePlayers, 20L, 20L);
 
         // Save config
 
 
         getConfig().options().copyDefaults(true);
+
 
         saveConfig();
     }

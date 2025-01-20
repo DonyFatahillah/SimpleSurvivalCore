@@ -17,7 +17,7 @@ public class playerMovementEvent implements Listener {
 
     private final playerAFKcommand afkCommand;
     private final HashMap<UUID, Long> lastMovement = new HashMap<>();
-    private static final long AFK_TIMEOUT = 3 * 60 * 1000; // 2 minutes in milliseconds
+    private static final long AFK_TIMEOUT = 2 * 60 * 1000; // 2 minutes in milliseconds
 
     public playerMovementEvent(playerAFKcommand afkCommand) {
         this.afkCommand = afkCommand;
@@ -54,7 +54,7 @@ public class playerMovementEvent implements Listener {
                 if ((currentTime - lastMove) >= AFK_TIMEOUT) {
                     afkCommand.setAfk(player, true, null);
                     // Mark as AFK
-                    player.sendMessage(color.GREEN+"You are now set to AFK after 3 minutes idling");
+                    player.sendMessage(color.GREEN+"You are now set to AFK after "+(AFK_TIMEOUT/60000)+" minutes idling");
                 }
             }
         }

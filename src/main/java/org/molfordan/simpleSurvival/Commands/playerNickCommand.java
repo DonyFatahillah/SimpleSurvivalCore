@@ -32,10 +32,22 @@ public class playerNickCommand implements TabExecutor {
         }
 
         if (args.length == 1){
-            String playerName = args[0];
+            String playerName = args[0]; // Get the first argument
+            boolean isOnline = false;
 
-            player.setDisplayName(ChatColor.translateAlternateColorCodes('&', playerName));
-            return true;
+            for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
+                if (playerName.equalsIgnoreCase(onlinePlayer.getName())) { // Compare names
+                    isOnline = true;
+                    break; // Exit the loop once a match is found
+                }
+            }
+
+            if(isOnline){
+                String playerName1 = args[1];
+                player.setDisplayName(ChatColor.translateAlternateColorCodes('&', playerName1));
+            } else {
+                player.setDisplayName(ChatColor.translateAlternateColorCodes('&', playerName));
+            }
         }
 
         return true;

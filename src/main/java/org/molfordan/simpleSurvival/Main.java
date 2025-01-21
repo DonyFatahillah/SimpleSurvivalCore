@@ -58,6 +58,7 @@ public final class Main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new playerDoingCommands(), this);
         getServer().getPluginManager().registerEvents(new playerOnMentionEvent(), this);
         getServer().getPluginManager().registerEvents(new playerOnJoinEvent(), this);
+        getServer().getPluginManager().registerEvents(new playersChatEvent(), this);
 
         // Schedule tasks
         getServer().getScheduler().runTaskTimer(this, movement::checkInactivePlayers, 20L, 20L);

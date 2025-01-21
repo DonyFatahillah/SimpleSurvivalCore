@@ -14,7 +14,11 @@ public class playersChatEvent implements Listener {
     @EventHandler
     public void onChat(PlayerChatEvent event){
 
-        event.setFormat(ChatColor.translateAlternateColorCodes('&', event.getMessage()));
+        Player player = event.getPlayer();
+
+        String message = event.getMessage();
+
+        event.setFormat("<"+player.getName()+">" + ChatColor.translateAlternateColorCodes('&', message));
 
 
     }

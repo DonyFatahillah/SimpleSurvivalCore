@@ -20,6 +20,7 @@ public class playerMovementEvent implements Listener {
     private static final long AFK_TIMEOUT = 2 * 60 * 1000; // 2 minutes in milliseconds
 
     public playerMovementEvent(playerAFKcommand afkCommand) {
+
         this.afkCommand = afkCommand;
     }
 

@@ -26,31 +26,57 @@ public class playerNickCommand implements TabExecutor {
 
 
 
-        if (args.length == 0){
-            player.sendMessage(color.RED + "usage : /nick [new nick]");
+        if (args.length == 0) {
+            player.sendMessage(ChatColor.RED + "Usage: /nick [playerName] [newNick] or /nick [newNick]");
             return true;
         }
 
-        if (args.length == 1){
-            String playerName = args[0]; // Get the first argument
+        if (args.length == 1) {
+            String input = args[0];
             boolean isOnline = false;
 
+            // Check if the input matches an online player's name
+            Player targetPlayer = null;
             for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
-                if (playerName.equalsIgnoreCase(onlinePlayer.getName())) { // Compare names
+                if (onlinePlayer.getName().equalsIgnoreCase(input)) {
                     isOnline = true;
-                    break; // Exit the loop once a match is found
+                    targetPlayer = onlinePlayer;
+                    break;
                 }
             }
 
-            if(isOnline){
-                String playerName1 = args[1];
-                player.setDisplayName(ChatColor.translateAlternateColorCodes('&', playerName1));
+            if (isOnline) {
+                // The argument matches an online player's name
+                player.sendMessage(ChatColor.RED + "Usage: /nick " + input + " [newNick] to set their nickname.");
             } else {
-                player.setDisplayName(ChatColor.translateAlternateColorCodes('&', playerName));
+                // Change the sender's nickname
+                player.setDisplayName(ChatColor.translateAlternateColorCodes('&', input));
+                player.sendMessage(ChatColor.GREEN + "Your nickname has been set to " + ChatColor.translateAlternateColorCodes('&', input));
             }
+            return true;
         }
 
+        if (args.length == 2) {
+            String targetName = args[0];
+            String newNick = args[1];
+
+            // Check if the target player is online
+            Player targetPlayer = Bukkit.getPlayerExact(targetName);
+            if (targetPlayer != null) {
+                // Change the target player's nickname
+                targetPlayer.setDisplayName(ChatColor.translateAlternateColorCodes('&', newNick));
+                targetPlayer.sendMessage(ChatColor.GREEN + "Your nickname has been set to " + ChatColor.translateAlternateColorCodes('&', newNick));
+                player.sendMessage(ChatColor.GREEN + "You have set " + targetName + "'s nickname to " + ChatColor.translateAlternateColorCodes('&', newNick));
+            } else {
+                player.sendMessage(ChatColor.RED + "Player " + targetName + " is not online.");
+            }
+            return true;
+        }
+
+        player.sendMessage(ChatColor.RED + "Invalid usage. Try: /nick [newNick] or /nick [playerName] [newNick]");
         return true;
+
+
     }
 
     @Override
@@ -59,6 +85,9 @@ public class playerNickCommand implements TabExecutor {
         List<String> suggestions = new ArrayList<>();
 
         if (args.length == 1){
+            for (Player player : Bukkit.getOnlinePlayers()) {
+                suggestions.add(player.getName());
+            }
             suggestions.add("nickname");
         }
 

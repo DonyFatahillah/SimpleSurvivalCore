@@ -38,3 +38,6 @@ commands:
     usage: /spl  [<playerName>] [<locationName>] [x] [y] [z]
     description: create player's location
     aliases: [spl, setpl]
+  nick:
+    usage: /nick [name]
+    description: nickname yourself

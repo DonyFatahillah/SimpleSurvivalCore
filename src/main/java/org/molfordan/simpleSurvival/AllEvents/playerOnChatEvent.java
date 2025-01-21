@@ -36,7 +36,7 @@ public class playerOnChatEvent implements Listener {
                     if (reason != null) {
 
                         // Send a message to the sender that the mentioned player is AFK
-                        sender.sendMessage(color.GREEN + "* " + mentionedPlayer.getName() + " is currently AFK! Reason: " + reason);
+                        sender.sendMessage(color.GREEN + "* " + mentionedPlayer.getName() + " is currently AFK! Reason: " + ChatColor.translateAlternateColorCodes('&', reason));
                     } else {
                         sender.sendMessage(color.GREEN + mentionedPlayer.getName() + " is currently AFK!");
                     }

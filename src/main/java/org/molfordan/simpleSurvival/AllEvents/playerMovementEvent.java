@@ -17,7 +17,7 @@ public class playerMovementEvent implements Listener {
 
     private final playerAFKcommand afkCommand;
     private final HashMap<UUID, Long> lastMovement = new HashMap<>();
-    private static final long AFK_TIMEOUT = 2 * 60 * 1000; // 2 minutes in milliseconds
+    private static final long AFK_TIMEOUT = 5 * 60 * 1000; // 2 minutes in milliseconds
 
     public playerMovementEvent(playerAFKcommand afkCommand) {
 

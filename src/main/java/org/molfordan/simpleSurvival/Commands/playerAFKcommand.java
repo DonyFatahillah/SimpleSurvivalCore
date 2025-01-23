@@ -68,8 +68,10 @@ public class playerAFKcommand implements TabExecutor {
             if (reason != null) {
 
                 Bukkit.broadcastMessage(color.GREEN + "* "+ player.getName() + " is now AFK! Reason: " + color.translateAlternateColorCodes('&',afkReasons.get(player.getUniqueId())));
+                player.sendTitle(color.YELLOW+"You are now AFK!", color.GREEN+"move to remove this message!", 10,  6000, 20);
             } else {
                 Bukkit.broadcastMessage(color.GREEN + "* "+ player.getName() + " is now AFK!");
+                player.sendTitle(color.YELLOW+"You are now AFK!", color.GREEN+"move to remove this message!", 10,  6000, 20);
             }
         } else {
             afkPlayers.remove(player.getUniqueId());

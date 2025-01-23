@@ -37,7 +37,7 @@ public class pingCommand implements CommandExecutor {
         if (args.length == 1){
 
             Player target = Bukkit.getPlayer(args[0]);
-            if(args[0].equals(target.getName())) {
+
 
                 if (target != null) {
                     int ping = target.getPing();
@@ -49,12 +49,9 @@ public class pingCommand implements CommandExecutor {
                 }
 
                 return true;
-            } else {
-                sender.sendMessage(color.GREEN+"Usage: /ping <playerName>");
 
-            }
 
-            return true;
+
 
         }
 

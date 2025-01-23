@@ -44,3 +44,6 @@ commands:
   ping:
     usage: /ping
     description: check some ping
+  test:
+    usage: /test
+    description: test

@@ -13,6 +13,7 @@ org\molfordan\simpleSurvival\Commands\setPlayerLocationCommand.class
 org\molfordan\simpleSurvival\Commands\deleteLocationCommand.class
 org\molfordan\simpleSurvival\Commands\LocationCommand.class
 org\molfordan\simpleSurvival\Commands\playerTeleportCommand.class
+org\molfordan\simpleSurvival\Commands\testCommand.class
 org\molfordan\simpleSurvival\AllEvents\playerMovementEvent.class
 org\molfordan\simpleSurvival\AllEvents\playersChatEvent.class
 org\molfordan\simpleSurvival\Commands\pingCommand.class

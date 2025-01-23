@@ -41,3 +41,6 @@ commands:
   nick:
     usage: /nick [name]
     description: nickname yourself
+  ping:
+    usage: /ping
+    description: check some ping

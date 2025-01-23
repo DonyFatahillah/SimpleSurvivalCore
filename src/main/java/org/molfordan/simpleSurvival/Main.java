@@ -41,6 +41,7 @@ public final class Main extends JavaPlugin {
         getCommand("afk").setExecutor(playerAfkCommand);
         getCommand("tel").setExecutor(new playerTeleportCommand());
         getCommand("nick").setExecutor(new playerNickCommand());
+        getCommand("ping").setExecutor(new pingCommand());
         //commandManager.registerCommand("setlocation", new setLocationCommand(this, locationMap));
         //commandManager.registerCommand("location", new LocationCommand(this, locationMap));
         //commandManager.registerCommand("seelocation", new seePlayerLocations(this, locationMap));

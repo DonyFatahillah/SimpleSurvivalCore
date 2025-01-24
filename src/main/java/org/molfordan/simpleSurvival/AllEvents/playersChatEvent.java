@@ -34,19 +34,39 @@ public class playersChatEvent implements Listener {
 
         // Check if the player is holding an item
         ItemStack itemStack = player.getInventory().getItemInMainHand();
-        if (itemStack != null && itemStack.hasItemMeta()) {
-            ItemMeta meta = itemStack.getItemMeta();
+        if (itemStack != null) {
+            String itemName;
 
-            // Get the display name or fallback to material name
-            String itemName = meta.hasDisplayName()
-                    ? ChatColor.translateAlternateColorCodes('&', meta.getDisplayName())
-                    : itemStack.getType().name();
+            // Get the custom display name if available
+            if (itemStack.hasItemMeta() && itemStack.getItemMeta().hasDisplayName()) {
+                ItemMeta meta = itemStack.getItemMeta();
+                itemName = ChatColor.translateAlternateColorCodes('&', meta.getDisplayName());
+            } else {
+                // Convert the material name to human-readable format
+                itemName = formatMaterialName(itemStack.getType().name());
+            }
 
             // Replace [i] in the message with the item name
-            message = message.replace("[i]", itemName);
+            message = message.replace("[i]", color.GRAY+"["+color.RESET+itemName+color.GRAY+"]");
         }
 
         // Set the modified message
         event.setMessage(message);
+    }
+
+    // Helper method to format material names
+    private String formatMaterialName(String materialName) {
+        String[] words = materialName.toLowerCase().split("_");
+        StringBuilder formattedName = new StringBuilder();
+
+        for (String word : words) {
+            // Capitalize the first letter of each word
+            formattedName.append(Character.toUpperCase(word.charAt(0)))
+                    .append(word.substring(1))
+                    .append(" ");
+        }
+
+        // Remove the trailing space
+        return formattedName.toString().trim();
     }
 }

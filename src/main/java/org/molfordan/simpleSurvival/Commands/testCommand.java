@@ -22,7 +22,8 @@ public class testCommand implements CommandExecutor {
         }
 
         Player player = (Player) sender;
-        player.sendTitle("TEST", "test", 10,6000, 20);
+        player.sendTitle("TEST", "test", 10,50, 10);
+        player.sendMessage("DEBUG");
 
 
 

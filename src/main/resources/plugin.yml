@@ -47,3 +47,7 @@ commands:
   test:
     usage: /test
     description: test
+  playerlevel:
+    usage: /playerlevel [name]
+    description: see player's level
+    aliases: [plevel, pexp, seexp]

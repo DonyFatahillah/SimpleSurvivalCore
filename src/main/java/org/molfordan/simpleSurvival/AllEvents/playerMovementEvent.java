@@ -6,6 +6,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.molfordan.simpleSurvival.Commands.playerAFKcommand;
 
 import java.util.HashMap;
@@ -17,11 +18,11 @@ public class playerMovementEvent implements Listener {
 
     private final playerAFKcommand afkCommand;
     private final HashMap<UUID, Long> lastMovement = new HashMap<>();
-    private static final long AFK_TIMEOUT = 5 * 60 * 1000; // 2 minutes in milliseconds
+    private final long AFK_TIMEOUT;
 
-    public playerMovementEvent(playerAFKcommand afkCommand) {
-
+    public playerMovementEvent(playerAFKcommand afkCommand, long afkTimeout) {
         this.afkCommand = afkCommand;
+        this.AFK_TIMEOUT = afkTimeout * 1000; // Convert seconds to milliseconds
     }
 
     @EventHandler
@@ -29,11 +30,8 @@ public class playerMovementEvent implements Listener {
         Player player = event.getPlayer();
         UUID playerId = player.getUniqueId();
 
-        // Check if the player's movement is only rotation (not actual movement)
-        if (event.getFrom().getBlockX() == event.getTo().getBlockX() &&
-                event.getFrom().getBlockY() == event.getTo().getBlockY() &&
-                event.getFrom().getBlockZ() == event.getTo().getBlockZ()) {
-            return;
+        if (event.getFrom().distanceSquared(event.getTo()) < 0.01) {
+            return; // Ignore small movements
         }
 
         // Update last movement timestamp
@@ -45,17 +43,21 @@ public class playerMovementEvent implements Listener {
         }
     }
 
-    // Method to check for inactive players
+    @EventHandler
+    public void onPlayerQuit(PlayerQuitEvent event) {
+        UUID playerId = event.getPlayer().getUniqueId();
+        lastMovement.remove(playerId); // Remove player from lastMovement map
+    }
+
     public void checkInactivePlayers() {
         long currentTime = System.currentTimeMillis();
         for (UUID playerId : lastMovement.keySet()) {
-            Player player = org.bukkit.Bukkit.getPlayer(playerId);
+            Player player = Bukkit.getPlayer(playerId);
             if (player != null && !afkCommand.isAfk(player)) {
                 long lastMove = lastMovement.get(playerId);
                 if ((currentTime - lastMove) >= AFK_TIMEOUT) {
-                    afkCommand.setAfk(player, true, null);
-                    // Mark as AFK
-                    player.sendMessage(color.GREEN+"You are now set to AFK after "+(AFK_TIMEOUT/60000)+" minutes idling");
+                    afkCommand.setAfk(player, true, null); // Mark as AFK
+                    player.sendMessage(color.GREEN + "You are now set to AFK after " + (AFK_TIMEOUT / 60000) + " minutes idling.");
                 }
             }
         }

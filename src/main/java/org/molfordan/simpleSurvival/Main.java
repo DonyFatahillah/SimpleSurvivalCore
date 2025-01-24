@@ -43,6 +43,7 @@ public final class Main extends JavaPlugin {
         getCommand("nick").setExecutor(new playerNickCommand());
         getCommand("ping").setExecutor(new pingCommand());
         getCommand("test").setExecutor(new testCommand());
+        getCommand("playerlevel").setExecutor(new playerExpCommand());
         //commandManager.registerCommand("setlocation", new setLocationCommand(this, locationMap));
         //commandManager.registerCommand("location", new LocationCommand(this, locationMap));
         //commandManager.registerCommand("seelocation", new seePlayerLocations(this, locationMap));
@@ -53,7 +54,7 @@ public final class Main extends JavaPlugin {
         //commandManager.registerCommand("tel", new playerTeleportCommand());
 
         // Register events
-        playerMovementEvent movement = new playerMovementEvent(playerAfkCommand);
+        playerMovementEvent movement = new playerMovementEvent(playerAfkCommand, 5 * 60);
         playerOnChatEvent chatEvent = new playerOnChatEvent(playerAfkCommand);
 
         getServer().getPluginManager().registerEvents(movement, this);
@@ -62,6 +63,7 @@ public final class Main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new playerOnMentionEvent(), this);
         getServer().getPluginManager().registerEvents(new playerOnJoinEvent(), this);
         getServer().getPluginManager().registerEvents(new playersChatEvent(), this);
+
 
         // Schedule tasks
         getServer().getScheduler().runTaskTimer(this, movement::checkInactivePlayers, 20L, 20L);

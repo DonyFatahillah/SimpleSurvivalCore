@@ -1,3 +1,4 @@
+org\molfordan\simpleSurvival\AllEvents\playerColoredAnvilEvent.class
 org\molfordan\simpleSurvival\AllEvents\playerDoingCommands.class
 org\molfordan\simpleSurvival\Commands\deletePlayerLocationCommand.class
 org\molfordan\simpleSurvival\Commands\setLocationCommand.class

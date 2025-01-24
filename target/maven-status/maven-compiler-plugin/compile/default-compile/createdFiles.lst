@@ -3,6 +3,7 @@ org\molfordan\simpleSurvival\Commands\deletePlayerLocationCommand.class
 org\molfordan\simpleSurvival\Commands\setLocationCommand.class
 org\molfordan\simpleSurvival\AllEvents\playerOnJoinEvent.class
 org\molfordan\simpleSurvival\Commands\playerNickCommand.class
+org\molfordan\simpleSurvival\Commands\playerExpCommand.class
 org\molfordan\simpleSurvival\Commands\msgCommand.class
 org\molfordan\simpleSurvival\Commands\seePlayerLocations.class
 org\molfordan\simpleSurvival\AllEvents\playerOnChatEvent.class

@@ -8,6 +8,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
+import org.molfordan.simpleSurvival.Main;
 
 import java.io.File;
 import java.util.List;
@@ -37,7 +38,7 @@ public class mailCommand implements TabExecutor {
         }
 
         String targetPlayerName = args[0];
-        String message = String.join(" ", args[1]);
+        String message = String.join(" ", args[1]).toString();
 
         OfflinePlayer targetPlayer = Bukkit.getOfflinePlayer(targetPlayerName);
 
@@ -51,10 +52,19 @@ public class mailCommand implements TabExecutor {
         String uuid = targetPlayer.getUniqueId().toString();
         String path = targetPlayer.getName() + ".messages." + uuid;
         List<String> messages = mailConfig.getStringList(path);
-        messages.add(message);
+        messages.add("From "+playerSender.getName()+" : " +message);
         mailConfig.set(path, messages);
 
-        sender.sendMessage("§aMessage sent to " + targetPlayer.getName());
+        playerSender.sendMessage("§aMessage sent to " + targetPlayer.getName());
+
+
+        Main plugin = (Main) Bukkit.getPluginManager().getPlugin("simpleSurvival");
+        if (plugin != null) {
+            plugin.saveMessagesConfig();
+        } else {
+            playerSender.sendMessage("§cError: Unable to save messages!");
+        }
+
         return true;
     }
 

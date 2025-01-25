@@ -1,10 +1,12 @@
 package org.molfordan.simpleSurvival.Commands;
 
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
+import org.molfordan.simpleSurvival.Main;
 
 import java.util.List;
 
@@ -40,7 +42,14 @@ public class readMailCommand implements CommandExecutor {
                     player.sendMessage("§7- " + message);
                 }
                 // Clear the messages after displaying them
-                mailConfig.set("messages." + uuid, null);
+                mailConfig.set(player.getName() + ".messages." + uuid, null);
+
+                Main plugin = (Main) Bukkit.getPluginManager().getPlugin("simpleSurvival");
+                if (plugin != null) {
+                    plugin.saveMessagesConfig();
+                } else {
+                    player.sendMessage("§cError: Unable to save messages!");
+                }
                 return true;
             } else {
                 player.sendMessage(color.GREEN+"You have no new messages!");

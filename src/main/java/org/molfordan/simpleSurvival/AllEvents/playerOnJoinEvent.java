@@ -36,8 +36,9 @@ public class playerOnJoinEvent implements Listener {
 
         List<String> messages = mailConfig.getStringList(player.getName()+".messages." + uuid);
         if (!messages.isEmpty()){
-            player.sendMessage(color.GREEN + "You have a new message!");
+            player.sendMessage(color.GREEN + "You have new messages!");
             player.sendMessage(color.GREEN+"/readmail to read the message!");
+            player.sendMessage(color.GREEN+"use /mail <player> <message> to mail them back!");
         }
 
 

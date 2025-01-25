@@ -39,7 +39,7 @@ public class readMailCommand implements CommandExecutor {
             if (!messages.isEmpty()) {
                 player.sendMessage("§aYou have new messages:");
                 for (String message : messages) {
-                    player.sendMessage("§7- " + message);
+                    player.sendMessage("§7- §f" + message);
                 }
                 // Clear the messages after displaying them
                 mailConfig.set(player.getName() + ".messages." + uuid, null);

@@ -58,12 +58,7 @@ public class mailCommand implements TabExecutor {
         playerSender.sendMessage("§aMessage sent to " + targetPlayer.getName());
 
 
-        Main plugin = (Main) Bukkit.getPluginManager().getPlugin("simpleSurvival");
-        if (plugin != null) {
-            plugin.saveMessagesConfig();
-        } else {
-            playerSender.sendMessage("§cError: Unable to save messages!");
-        }
+
 
         return true;
     }

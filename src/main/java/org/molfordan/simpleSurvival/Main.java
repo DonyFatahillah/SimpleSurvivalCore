@@ -59,6 +59,7 @@ public final class Main extends JavaPlugin {
         getCommand("playerlevel").setExecutor(new playerExpCommand());
         getCommand("mail").setExecutor(new mailCommand(mailConfig));
         getCommand("readmail").setExecutor(new readMailCommand(mailConfig));
+        getCommand("msg").setExecutor(new msgCommand());
         //commandManager.registerCommand("setlocation", new setLocationCommand(this, locationMap));
         //commandManager.registerCommand("location", new LocationCommand(this, locationMap));
         //commandManager.registerCommand("seelocation", new seePlayerLocations(this, locationMap));

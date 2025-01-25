@@ -44,12 +44,12 @@ public class readMailCommand implements CommandExecutor {
                 // Clear the messages after displaying them
                 mailConfig.set(player.getName() + ".messages." + uuid, null);
 
-                Main plugin = (Main) Bukkit.getPluginManager().getPlugin("simpleSurvival");
-                if (plugin != null) {
-                    plugin.saveMessagesConfig();
-                } else {
-                    player.sendMessage("§cError: Unable to save messages!");
-                }
+                //Main plugin = (Main) Bukkit.getPluginManager().getPlugin("simpleSurvival");
+                //if (plugin != null) {
+                //    plugin.saveMessagesConfig();
+                //} else {
+
+                //}
                 return true;
             } else {
                 player.sendMessage(color.GREEN+"You have no new messages!");

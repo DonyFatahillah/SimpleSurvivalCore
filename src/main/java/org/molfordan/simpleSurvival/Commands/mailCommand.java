@@ -11,6 +11,7 @@ import org.bukkit.entity.Player;
 import org.molfordan.simpleSurvival.Main;
 
 import java.io.File;
+import java.util.Arrays;
 import java.util.List;
 
 public class mailCommand implements TabExecutor {
@@ -38,7 +39,7 @@ public class mailCommand implements TabExecutor {
         }
 
         String targetPlayerName = args[0];
-        String message = String.join(" ", args[1]).toString();
+        String message = String.join(" ", Arrays.copyOfRange(args, 1, args.length));
 
         OfflinePlayer targetPlayer = Bukkit.getOfflinePlayer(targetPlayerName);
 

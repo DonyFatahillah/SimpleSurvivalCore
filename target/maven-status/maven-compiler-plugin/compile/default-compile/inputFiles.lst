@@ -8,6 +8,7 @@ C:\Users\Muhammad Dony\Documents\IntelliJIDEAproject\SimpleSurvival\src\main\jav
 C:\Users\Muhammad Dony\Documents\IntelliJIDEAproject\SimpleSurvival\src\main\java\org\molfordan\simpleSurvival\Commands\deleteLocationCommand.java
 C:\Users\Muhammad Dony\Documents\IntelliJIDEAproject\SimpleSurvival\src\main\java\org\molfordan\simpleSurvival\Commands\deletePlayerLocationCommand.java
 C:\Users\Muhammad Dony\Documents\IntelliJIDEAproject\SimpleSurvival\src\main\java\org\molfordan\simpleSurvival\Commands\LocationCommand.java
+C:\Users\Muhammad Dony\Documents\IntelliJIDEAproject\SimpleSurvival\src\main\java\org\molfordan\simpleSurvival\Commands\mailCommand.java
 C:\Users\Muhammad Dony\Documents\IntelliJIDEAproject\SimpleSurvival\src\main\java\org\molfordan\simpleSurvival\Commands\msgCommand.java
 C:\Users\Muhammad Dony\Documents\IntelliJIDEAproject\SimpleSurvival\src\main\java\org\molfordan\simpleSurvival\Commands\pingCommand.java
 C:\Users\Muhammad Dony\Documents\IntelliJIDEAproject\SimpleSurvival\src\main\java\org\molfordan\simpleSurvival\Commands\playerAFKcommand.java
@@ -15,6 +16,7 @@ C:\Users\Muhammad Dony\Documents\IntelliJIDEAproject\SimpleSurvival\src\main\jav
 C:\Users\Muhammad Dony\Documents\IntelliJIDEAproject\SimpleSurvival\src\main\java\org\molfordan\simpleSurvival\Commands\playerNickCommand.java
 C:\Users\Muhammad Dony\Documents\IntelliJIDEAproject\SimpleSurvival\src\main\java\org\molfordan\simpleSurvival\Commands\playerTeleportCommand.java
 C:\Users\Muhammad Dony\Documents\IntelliJIDEAproject\SimpleSurvival\src\main\java\org\molfordan\simpleSurvival\Commands\pluginreloadCommand.java
+C:\Users\Muhammad Dony\Documents\IntelliJIDEAproject\SimpleSurvival\src\main\java\org\molfordan\simpleSurvival\Commands\readMailCommand.java
 C:\Users\Muhammad Dony\Documents\IntelliJIDEAproject\SimpleSurvival\src\main\java\org\molfordan\simpleSurvival\Commands\seePlayerLocations.java
 C:\Users\Muhammad Dony\Documents\IntelliJIDEAproject\SimpleSurvival\src\main\java\org\molfordan\simpleSurvival\Commands\setLocationCommand.java
 C:\Users\Muhammad Dony\Documents\IntelliJIDEAproject\SimpleSurvival\src\main\java\org\molfordan\simpleSurvival\Commands\setPlayerLocationCommand.java

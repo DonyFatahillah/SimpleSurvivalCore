@@ -13,13 +13,23 @@ public class playerExpCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
 
-        Player target = Bukkit.getPlayer(args[0]);
+        if (args.length == 0){
 
-        if (target != null){
-            sender.sendMessage(color.GREEN+target.getName()+"'s level is "+target.getLevel());
+
+            sender.sendMessage(color.RED+"usage: /pexp [name]");
             return true;
-        } else {
-            sender.sendMessage(color.RED+"that player is not online or doesn't exist!");
+        }
+
+
+        if (args.length == 1) {
+            Player target = Bukkit.getPlayer(args[0]);
+
+            if (target != null) {
+                sender.sendMessage(color.GREEN + target.getName() + "'s level is " + target.getLevel());
+                return true;
+            } else {
+                sender.sendMessage(color.RED + "that player is not online or doesn't exist!");
+            }
         }
 
 

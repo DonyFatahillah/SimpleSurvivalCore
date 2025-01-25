@@ -51,3 +51,10 @@ commands:
     usage: /playerlevel [name]
     description: see player's level
     aliases: [plevel, pexp, seexp]
+  mail:
+    usage: /mail [name] [messages]
+    description: mailing someone
+  readmail:
+    usage: /readmail
+    description: see your mail
+    aliases: [rm]

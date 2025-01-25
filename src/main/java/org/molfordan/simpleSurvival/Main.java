@@ -2,10 +2,14 @@ package org.molfordan.simpleSurvival;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.molfordan.simpleSurvival.AllEvents.*;
 import org.molfordan.simpleSurvival.Commands.*;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -21,11 +25,20 @@ public final class Main extends JavaPlugin {
     public static String notAllowed = color.RED + "You don't have permissions to do that!";
 
     //public List<String> suggestions = new ArrayList<>();
+    private File mailFile;
+
+    private FileConfiguration mailConfig;
 
 
 
     @Override
     public void onEnable() {
+
+
+        createMessagesFile();
+        saveMessagesConfig();
+        //reloadMessagesConfig();
+
         playerAFKcommand playerAfkCommand = new playerAFKcommand();
 
 
@@ -44,6 +57,8 @@ public final class Main extends JavaPlugin {
         getCommand("ping").setExecutor(new pingCommand());
         getCommand("test").setExecutor(new testCommand());
         getCommand("playerlevel").setExecutor(new playerExpCommand());
+        getCommand("mail").setExecutor(new mailCommand(mailConfig));
+        getCommand("readmail").setExecutor(new readMailCommand(mailConfig));
         //commandManager.registerCommand("setlocation", new setLocationCommand(this, locationMap));
         //commandManager.registerCommand("location", new LocationCommand(this, locationMap));
         //commandManager.registerCommand("seelocation", new seePlayerLocations(this, locationMap));
@@ -61,7 +76,7 @@ public final class Main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(chatEvent, this);
         getServer().getPluginManager().registerEvents(new playerDoingCommands(), this);
         getServer().getPluginManager().registerEvents(new playerOnMentionEvent(), this);
-        getServer().getPluginManager().registerEvents(new playerOnJoinEvent(), this);
+        getServer().getPluginManager().registerEvents(new playerOnJoinEvent(mailConfig), this);
         getServer().getPluginManager().registerEvents(new playersChatEvent(), this);
         getServer().getPluginManager().registerEvents(new playerColoredAnvilEvent(), this);
 
@@ -76,6 +91,34 @@ public final class Main extends JavaPlugin {
 
 
         saveConfig();
+    }
+
+    private void createMessagesFile() {
+        mailFile = new File(getDataFolder(), "messages.yml");
+
+        if (!mailFile.exists()) {
+            mailFile.getParentFile().mkdirs();
+            saveResource("messages.yml", false); // Save default if bundled
+        }
+
+        mailConfig = YamlConfiguration.loadConfiguration(mailFile);
+    }
+
+    public FileConfiguration getMessagesConfig() {
+        return mailConfig;
+    }
+
+    public void saveMessagesConfig() {
+        try {
+            mailConfig.save(mailFile);
+        } catch (IOException e) {
+            getLogger().severe("Could not save messages.yml!");
+            e.printStackTrace();
+        }
+    }
+
+    public void reloadMessagesConfig() {
+        mailConfig   = YamlConfiguration.loadConfiguration(mailFile);
     }
 
     @Override

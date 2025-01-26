@@ -39,7 +39,7 @@ public class replyCommand implements CommandExecutor {
 
         Player target = messageManager.getLastMessagedPlayer(player);
         if (target == null) {
-            player.sendMessage("You have no one to reply to.");
+            player.sendMessage(color.GREEN+"You have no one to reply to.");
             return false;
         }
 

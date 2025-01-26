@@ -62,3 +62,6 @@ commands:
     usage: /message <player> <message>
     description: message a player
     aliases: [m]
+  reply:
+    usage: /reply <message>
+    description: [r]

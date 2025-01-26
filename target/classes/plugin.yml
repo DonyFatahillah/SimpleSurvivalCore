@@ -58,7 +58,7 @@ commands:
     usage: /readmail
     description: see your mail
     aliases: [rm]
-  msg:
-    usage: /msg <player> <message>
+  message:
+    usage: /message <player> <message>
     description: message a player
-    aliases: [message]
+    aliases: [m]

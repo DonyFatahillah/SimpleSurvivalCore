@@ -1,6 +1,7 @@
 package org.molfordan.simpleSurvival.Commands;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -30,19 +31,19 @@ public class msgCommand implements CommandExecutor {
             return true;
         }
 
-        if (args.length > 2){
 
-            if (!target.isOnline() && target == null){
-                playerSender.sendMessage(color.RED+"That player is not online!");
-                return true;
-            } else {
-                target.sendMessage(color.GREEN+"["+playerSender.getName()+" -> You] "+ message);
-                playerSender.sendMessage(color.GREEN+"[You -> "+target.getName()+"] "+ message);
-                return true;
-            }
+        if (target.isOnline()) {
 
-
+            target.sendMessage(color.GREEN + "[" + playerSender.getName() + " -> You] "+color.GRAY+"» " +color.RESET+ ChatColor.translateAlternateColorCodes('&', message));
+            playerSender.sendMessage(color.GREEN + "[You -> " + target.getName() + "] "+color.GRAY+"» " +color.RESET+ ChatColor.translateAlternateColorCodes('&', message));
+            return true;
+        } else {
+            playerSender.sendMessage(color.RED+"That player is offline or doesn't exist!");
         }
+
+
+
+
 
 
 

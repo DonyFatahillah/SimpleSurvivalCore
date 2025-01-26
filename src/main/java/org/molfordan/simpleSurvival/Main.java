@@ -7,6 +7,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.molfordan.simpleSurvival.AllEvents.*;
 import org.molfordan.simpleSurvival.Commands.*;
+import org.molfordan.simpleSurvival.Manager.messageManager;
 
 import java.io.File;
 import java.io.IOException;
@@ -40,6 +41,7 @@ public final class Main extends JavaPlugin {
         //reloadMessagesConfig();
 
         playerAFKcommand playerAfkCommand = new playerAFKcommand();
+        messageManager messageManager = new messageManager();
 
 
 
@@ -59,7 +61,8 @@ public final class Main extends JavaPlugin {
         getCommand("playerlevel").setExecutor(new playerExpCommand());
         getCommand("mail").setExecutor(new mailCommand(mailConfig));
         getCommand("readmail").setExecutor(new readMailCommand(mailConfig));
-        getCommand("message").setExecutor(new msgCommand());
+        getCommand("message").setExecutor(new msgCommand(messageManager));
+        getCommand("reply").setExecutor(new replyCommand(messageManager));
         //commandManager.registerCommand("setlocation", new setLocationCommand(this, locationMap));
         //commandManager.registerCommand("location", new LocationCommand(this, locationMap));
         //commandManager.registerCommand("seelocation", new seePlayerLocations(this, locationMap));

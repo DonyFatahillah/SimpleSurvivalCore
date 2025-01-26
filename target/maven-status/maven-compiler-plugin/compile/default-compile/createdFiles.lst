@@ -1,9 +1,11 @@
+org\molfordan\simpleSurvival\Commands\replyCommand.class
 org\molfordan\simpleSurvival\Commands\playerNickCommand.class
 org\molfordan\simpleSurvival\Commands\playerExpCommand.class
 org\molfordan\simpleSurvival\AllEvents\playerOnChatEvent.class
 org\molfordan\simpleSurvival\Main.class
 org\molfordan\simpleSurvival\Commands\playerAFKcommand.class
 org\molfordan\simpleSurvival\Commands\setPlayerLocationCommand.class
+org\molfordan\simpleSurvival\Manager\messageManager.class
 org\molfordan\simpleSurvival\Commands\mailCommand.class
 org\molfordan\simpleSurvival\AllEvents\playerMovementEvent.class
 org\molfordan\simpleSurvival\AllEvents\playerOnMentionEvent.class

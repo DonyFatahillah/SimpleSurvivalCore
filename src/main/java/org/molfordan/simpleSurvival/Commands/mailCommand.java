@@ -2,24 +2,25 @@ package org.molfordan.simpleSurvival.Commands;
 
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
-import org.bukkit.command.TabExecutor;
+import org.bukkit.command.*;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.molfordan.simpleSurvival.Main;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class mailCommand implements TabExecutor {
 
 
+    private final Main plugin;
+
     private final FileConfiguration mailConfig;
 
-    public mailCommand(FileConfiguration mailConfig) {
+    public mailCommand(Main plugin, FileConfiguration mailConfig) {
+        this.plugin = plugin;
         this.mailConfig = mailConfig;
     }
 
@@ -67,9 +68,30 @@ public class mailCommand implements TabExecutor {
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String s, String[] args) {
 
+        List<String> suggestions = new ArrayList<>();
+
+        PluginCommand cmd = plugin.getCommand("mail");
+
+        if (cmd == null){
+            return suggestions;
+        }
+
+        if (args.length == 0){
+            List<String> aliases = cmd.getAliases();
+            if (aliases != null && !aliases.isEmpty()) {
+                suggestions.addAll(aliases);
+            }
 
 
+        } else if (args.length == 1){
+            for (Player player : Bukkit.getOnlinePlayers()){
+                suggestions.add(player.getName());
+            }
+        } else if (args.length > 1){
+            suggestions.add("<message>");
+        }
 
-        return List.of();
+
+        return suggestions;
     }
 }

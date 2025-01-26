@@ -45,6 +45,8 @@ public final class Main extends JavaPlugin {
 
 
 
+
+
         // Register all commands with CommandManager
         getCommand("deleteplayerlocation").setExecutor(new deletePlayerLocationCommand(this));
         getCommand("setlocation").setExecutor(new setLocationCommand(this, locationMap));
@@ -59,10 +61,11 @@ public final class Main extends JavaPlugin {
         getCommand("ping").setExecutor(new pingCommand());
         getCommand("test").setExecutor(new testCommand());
         getCommand("playerlevel").setExecutor(new playerExpCommand());
-        getCommand("mail").setExecutor(new mailCommand(mailConfig));
+        getCommand("mail").setExecutor(new mailCommand(this, mailConfig));
         getCommand("readmail").setExecutor(new readMailCommand(mailConfig));
-        getCommand("message").setExecutor(new msgCommand(messageManager));
-        getCommand("reply").setExecutor(new replyCommand(messageManager));
+        getCommand("message").setExecutor(new msgCommand(this, messageManager));
+        getCommand("reply").setExecutor(new replyCommand(this,messageManager));
+        getCommand("clearchat").setExecutor(new clearChatCommand());
         //commandManager.registerCommand("setlocation", new setLocationCommand(this, locationMap));
         //commandManager.registerCommand("location", new LocationCommand(this, locationMap));
         //commandManager.registerCommand("seelocation", new seePlayerLocations(this, locationMap));

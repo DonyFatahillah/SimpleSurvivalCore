@@ -9,6 +9,7 @@ public class messageManager {
 
     public void setLastMessaged(Player player, Player target) {
         lastMessaged.put(target, player);
+        lastMessaged.put(player, target);
     }
 
     public Player getLastMessagedPlayer(Player player) {

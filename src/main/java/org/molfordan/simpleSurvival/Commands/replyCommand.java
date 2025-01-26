@@ -1,22 +1,26 @@
 package org.molfordan.simpleSurvival.Commands;
 
 import org.bukkit.ChatColor;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
+import org.bukkit.command.*;
 import org.bukkit.entity.Player;
+import org.molfordan.simpleSurvival.Main;
 import org.molfordan.simpleSurvival.Manager.messageManager;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static org.molfordan.simpleSurvival.Main.color;
 
-public class replyCommand implements CommandExecutor {
+public class replyCommand implements TabExecutor {
 
     private final messageManager messageManager;
 
+    private final Main plugin;
 
-    public replyCommand(messageManager messageManager){
+
+    public replyCommand(Main plugin, messageManager messageManager){
+        this.plugin = plugin;
         this.messageManager = messageManager;
     }
 
@@ -40,14 +44,40 @@ public class replyCommand implements CommandExecutor {
         Player target = messageManager.getLastMessagedPlayer(player);
         if (target == null) {
             player.sendMessage(color.GREEN+"You have no one to reply to.");
-            return false;
+            return true;
         }
 
-        String message = String.join(" ", Arrays.copyOfRange(args, 1, args.length));
+        String message = String.join(" ", args);
 
         target.sendMessage(color.GREEN + "[" + player.getName() + " -> You] "+color.GRAY+"» " +color.RESET+ ChatColor.translateAlternateColorCodes('&', message));
         player.sendMessage(color.GREEN + "[You -> " + target.getName() + "] "+color.GRAY+"» " +color.RESET+ ChatColor.translateAlternateColorCodes('&', message));
 
         return true;
+    }
+
+    @Override
+    public List<String> onTabComplete(CommandSender sender, Command command, String s, String[] args) {
+
+        List<String> suggestion = new ArrayList<>();
+
+        PluginCommand cmd = plugin.getCommand("reply");
+
+        if (cmd == null){
+            return suggestion;
+        }
+
+        if (args.length == 0){
+            List<String> aliases = cmd.getAliases();
+            if (aliases != null && !aliases.isEmpty()) {
+                suggestion.addAll(aliases);
+            }
+
+
+        } else if (args.length > 1){
+            suggestion.add("<message>");
+        }
+
+
+        return suggestion;
     }
 }

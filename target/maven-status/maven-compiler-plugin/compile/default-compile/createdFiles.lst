@@ -15,6 +15,7 @@ org\molfordan\simpleSurvival\Commands\deletePlayerLocationCommand.class
 org\molfordan\simpleSurvival\Commands\setLocationCommand.class
 org\molfordan\simpleSurvival\AllEvents\playerOnJoinEvent.class
 org\molfordan\simpleSurvival\Commands\readMailCommand.class
+org\molfordan\simpleSurvival\Commands\clearChatCommand.class
 org\molfordan\simpleSurvival\Commands\msgCommand.class
 org\molfordan\simpleSurvival\Commands\seePlayerLocations.class
 org\molfordan\simpleSurvival\Commands\pluginreloadCommand.class

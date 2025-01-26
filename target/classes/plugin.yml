@@ -64,4 +64,9 @@ commands:
     aliases: [m]
   reply:
     usage: /reply <message>
-    description: [r]
+    description: reply message
+    aliases: [r, rep]
+  clearchat:
+    usage: /clearchat
+    description: clears your chat
+    aliases: [cc]

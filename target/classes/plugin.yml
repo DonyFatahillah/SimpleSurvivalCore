@@ -70,3 +70,7 @@ commands:
     usage: /clearchat
     description: clears your chat
     aliases: [cc]
+  enablelog:
+    usage: /enablelog
+    description: enable log
+    aliases: [el]

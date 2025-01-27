@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.molfordan.simpleSurvival.Main.color;
+
 public class mailCommand implements TabExecutor {
 
 
@@ -44,6 +46,11 @@ public class mailCommand implements TabExecutor {
 
         OfflinePlayer targetPlayer = Bukkit.getOfflinePlayer(targetPlayerName);
 
+        if (targetPlayer == playerSender){
+            playerSender.sendMessage("§aYou can't send mail to yourself!");
+            return true;
+        }
+
         if (!targetPlayer.hasPlayedBefore() && !targetPlayer.isOnline()) {
             playerSender.sendMessage("§cPlayer not found!");
             return true;
@@ -51,11 +58,21 @@ public class mailCommand implements TabExecutor {
 
 
 
+        if (targetPlayer.isOnline()){
+            Player targetOnline = Bukkit.getPlayer(targetPlayer.getUniqueId());
+            targetOnline.sendMessage(color.GREEN+"You have a new mail sent by "+playerSender.getName());
+            targetOnline.sendMessage(color.GREEN+"/readmail to read them!");
+            targetOnline.sendMessage(color.GREEN+"/mail <player> <messages> to sent them mails!");
+        }
+
+
         String uuid = targetPlayer.getUniqueId().toString();
         String path = targetPlayer.getName() + ".messages." + uuid;
         List<String> messages = mailConfig.getStringList(path);
         messages.add("From "+playerSender.getName()+" : " +message);
         mailConfig.set(path, messages);
+        plugin.saveMessagesConfig();
+        mailConfig.saveToString();
 
         playerSender.sendMessage("§aMessage sent to " + targetPlayer.getName());
 
@@ -70,20 +87,7 @@ public class mailCommand implements TabExecutor {
 
         List<String> suggestions = new ArrayList<>();
 
-        PluginCommand cmd = plugin.getCommand("mail");
-
-        if (cmd == null){
-            return suggestions;
-        }
-
-        if (args.length == 0){
-            List<String> aliases = cmd.getAliases();
-            if (aliases != null && !aliases.isEmpty()) {
-                suggestions.addAll(aliases);
-            }
-
-
-        } else if (args.length == 1){
+        if (args.length == 1){
             for (Player player : Bukkit.getOnlinePlayers()){
                 suggestions.add(player.getName());
             }

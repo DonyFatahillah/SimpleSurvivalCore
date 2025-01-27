@@ -16,7 +16,10 @@ public class readMailCommand implements CommandExecutor {
 
     private final FileConfiguration mailConfig;
 
-    public readMailCommand(FileConfiguration mailConfig) {
+    private final Main plugin;
+
+    public readMailCommand(Main plugin,FileConfiguration mailConfig) {
+        this.plugin = plugin;
         this.mailConfig = mailConfig;
     }
 
@@ -43,6 +46,8 @@ public class readMailCommand implements CommandExecutor {
                 }
                 // Clear the messages after displaying them
                 mailConfig.set(player.getName() + ".messages." + uuid, null);
+                plugin.saveMessagesConfig();
+
 
                 //Main plugin = (Main) Bukkit.getPluginManager().getPlugin("simpleSurvival");
                 //if (plugin != null) {

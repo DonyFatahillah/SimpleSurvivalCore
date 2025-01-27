@@ -119,10 +119,7 @@ public class playerTeleportCommand implements TabExecutor {
 
         List<String> suggestions = new ArrayList<>();
 
-        if (!sender.hasPermission("simplesurvival.tp")) {
-            sender.sendMessage(notAllowed);
-            return Collections.emptyList();
-        }
+
         if (args.length == 0){
             suggestions.add("teleport");
             suggestions.add("tel");

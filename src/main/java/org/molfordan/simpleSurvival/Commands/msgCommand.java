@@ -49,6 +49,11 @@ public class msgCommand implements TabExecutor {
             return true;
         }
 
+        if (target == playerSender){
+            playerSender.sendMessage(color.GREEN+"You can't send message yourself!");
+            return true;
+        }
+
         if(target == null){
             playerSender.sendMessage(color.RED+"That player isn't online or doesn't exist!");
             return true;
@@ -80,19 +85,7 @@ public class msgCommand implements TabExecutor {
 
         List<String> suggestions = new ArrayList<>();
 
-        PluginCommand cmd = plugin.getCommand("message");
-
-        if (cmd == null){
-            return suggestions;
-        }
-
-        if (args.length == 0){
-            List<String> aliases = cmd.getAliases();
-            if (aliases != null && !aliases.isEmpty()) {
-                suggestions.addAll(aliases);
-            }
-
-        } else if (args.length == 1){
+        if (args.length == 1){
             for (Player player : Bukkit.getOnlinePlayers()){
                 suggestions.add(player.getName());
             }

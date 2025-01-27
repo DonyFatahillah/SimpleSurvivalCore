@@ -40,7 +40,7 @@ public final class Main extends JavaPlugin {
         saveMessagesConfig();
         //reloadMessagesConfig();
 
-        playerAFKcommand playerAfkCommand = new playerAFKcommand();
+        playerAFKcommand playerAfkCommand = new playerAFKcommand(this);
         messageManager messageManager = new messageManager();
 
 
@@ -62,10 +62,12 @@ public final class Main extends JavaPlugin {
         getCommand("test").setExecutor(new testCommand());
         getCommand("playerlevel").setExecutor(new playerExpCommand());
         getCommand("mail").setExecutor(new mailCommand(this, mailConfig));
-        getCommand("readmail").setExecutor(new readMailCommand(mailConfig));
+        getCommand("readmail").setExecutor(new readMailCommand(this,mailConfig));
         getCommand("message").setExecutor(new msgCommand(this, messageManager));
         getCommand("reply").setExecutor(new replyCommand(this,messageManager));
         getCommand("clearchat").setExecutor(new clearChatCommand());
+        enableConsoleLogCommand consoleLogCommand = new enableConsoleLogCommand();
+        getCommand("enablelog").setExecutor(consoleLogCommand);
         //commandManager.registerCommand("setlocation", new setLocationCommand(this, locationMap));
         //commandManager.registerCommand("location", new LocationCommand(this, locationMap));
         //commandManager.registerCommand("seelocation", new seePlayerLocations(this, locationMap));
@@ -76,20 +78,23 @@ public final class Main extends JavaPlugin {
         //commandManager.registerCommand("tel", new playerTeleportCommand());
 
         // Register events
+
         playerMovementEvent movement = new playerMovementEvent(playerAfkCommand, 5 * 60);
         playerOnChatEvent chatEvent = new playerOnChatEvent(playerAfkCommand);
 
         getServer().getPluginManager().registerEvents(movement, this);
         getServer().getPluginManager().registerEvents(chatEvent, this);
-        getServer().getPluginManager().registerEvents(new playerDoingCommands(), this);
+        getServer().getPluginManager().registerEvents(new playerDoingCommands(consoleLogCommand), this);
         getServer().getPluginManager().registerEvents(new playerOnMentionEvent(), this);
         getServer().getPluginManager().registerEvents(new playerOnJoinEvent(mailConfig), this);
         getServer().getPluginManager().registerEvents(new playersChatEvent(), this);
         getServer().getPluginManager().registerEvents(new playerColoredAnvilEvent(), this);
+        getServer().getPluginManager().registerEvents(new milkPlayerEvent(), this);
+
 
 
         // Schedule tasks
-        getServer().getScheduler().runTaskTimer(this, movement::checkInactivePlayers, 20L, 20L);
+       // getServer().getScheduler().runTaskTimer(this, movement::checkAFKTimeout, 0L, 20L);
 
         // Save config
 
